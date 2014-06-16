@@ -38,6 +38,18 @@ a:visited { color: #205caa; }
 /* Layout Styles */
 /* ----------------------------------------------------------*/
 
+/* Handshake ASCII Art */
+
+.engineering-logo {
+  background-color: #000;
+  color: #FF5800;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 4px;
+  line-height: 4px;
+  padding: 10px;
+}
+
 /* Site header */
 
 .site-title,
@@ -47,29 +59,13 @@ a:visited { color: #205caa; }
   text-decoration: none;
 }
 
-.engineering-logo {
-  background-color: #000;
-  color: #FF5800;
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 4px;
-  padding: 10px;
-}
-
 
 .site-nav {
   float: left;
   width: 300px;
-  line-height: 56px;
 }
 
 .site-nav .menu-icon { display: none; }
-
-.site-nav .page-link {
-  margin-left: 20px;
-  color: #727272;
-  letter-spacing: -.5px;
-}
 
 /* Site footer */
 
