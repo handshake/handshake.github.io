@@ -1,9 +1,9 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+title: Handshake Engineering
+email: devs+blog@handshake.com
+description: "We build software to connect great brands to local retailers and their customers [handshake.com](@handshake)."
 baseurl: ""
-url: "http://yourdomain.com"
+url: "http://handshake.com"
 
 # Build settings
 markdown: kramdown
