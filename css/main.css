@@ -40,14 +40,18 @@ a:visited { color: #205caa; }
 
 /* Handshake ASCII Art */
 
-.engineering-logo {
-  background-color: #000;
-  color: #FF5800;
+.engineering-ascii {
+  color: #333;
   font-weight: bold;
   font-family: monospace;
   font-size: 4px;
   line-height: 4px;
   padding: 10px;
+}
+
+.engineering-logo {
+  background-color: #000;
+  color: #FF5800;
 }
 
 /* Site header */
