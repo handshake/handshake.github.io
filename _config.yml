@@ -1,9 +1,11 @@
 # Site settings
 title: Handshake Engineering
 email: devs+blog@handshake.com
-description: "We build software to connect great brands to local retailers and their customers [handshake.com](@handshake)."
+description: "We build software to connect great brands to local retailers and their customers @handshake."
 baseurl: ""
 url: "http://handshake.com"
+username: "handshake"
+twitter: "handshakeeng"
 
 # Build settings
 markdown: kramdown
