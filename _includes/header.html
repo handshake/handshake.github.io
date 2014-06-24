@@ -13,9 +13,13 @@
         </svg>
       </a>
       <div class="trigger">
+        <a class="page-link" href="https://handshake.com">Handshake</a>
         {% for page in site.pages %}
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          {% unless page.url == "/" or page.url == "/feed.xml" %}
+            <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          {% endunless %}
         {% endfor %}
+        <a class="page-link twitter" target="_blank" href="https://twitter.com/handshakeeng">@handshakeeng</a>
       </div>
     </nav>
   </div></div>

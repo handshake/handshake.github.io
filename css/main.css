@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; color: #222; }
 
 body {
   font-family: Helvetica, Arial, sans-serif;
@@ -19,7 +19,7 @@ body {
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
 
 a         { color: #FF5800; text-decoration: none; }
-a:hover   { color: #333; text-decoration: underline; }
+a:hover   { color: #222; text-decoration: underline; }
 a:visited { color: #FFA473; }
 
 /* Utility */
@@ -38,7 +38,6 @@ a:visited { color: #FFA473; }
   background-color: #FFF;
 }
 
-
 /* Layout Styles */
 /* ----------------------------------------------------------*/
 
@@ -48,7 +47,7 @@ a:visited { color: #FFA473; }
   border-top: 5px solid #FF5800;
   border-bottom: 1px solid #C0C0C0;
   min-height: 56px;
-  background-color: #000;
+  background-color: #222;
   color: #FFF;
 }
 
@@ -63,19 +62,23 @@ a:visited { color: #FFA473; }
 
 .site-nav {
     padding: 2px 0px;
-    color: #333;
+    color: #222;
 }
 
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
   margin-left: 20px;
-  color: #333;
+  color: #222;
   letter-spacing: -.5px;
 }
 
 .site-nav .page-link:first-child {
   margin-left: 0px;
+}
+
+.site-nav .page-link.twitter {
+  float: right;
 }
 
 
@@ -130,6 +133,7 @@ a:visited { color: #FFA473; }
 
 .github-icon-svg,
 .twitter-icon-svg,
+.rss-icon-svg,
 .cc-by-icon-svg {
   display: inline-block;
   width: 16px;
@@ -259,14 +263,14 @@ a:visited { color: #FFA473; }
 /* terminal */
 .post pre.terminal {
   border: 1px solid #000;
-  background-color: #333;
+  background-color: #222;
   color: #FFF;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
 
-.post pre.terminal code { background-color: #333; }
+.post pre.terminal code { background-color: #222; }
 
 /* Syntax highlighting styles */
 /* ----------------------------------------------------------*/
@@ -405,7 +409,7 @@ a:visited { color: #FFA473; }
     position: fixed;
     z-index: 10;
     top: 14px; right: 8px;
-    background-color: #000;
+    background-color: #222;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -461,5 +465,13 @@ a:visited { color: #FFA473; }
   .site-title .engineering-ascii.long,
   .site-title .engineering-ascii.short {
     display: none;
+  }
+
+  .site-nav .page-link {
+    color: #FFF;
+  }
+
+  .site-nav .page-link.twitter {
+    float: none;
   }
 }
