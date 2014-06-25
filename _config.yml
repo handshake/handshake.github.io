@@ -6,7 +6,7 @@ baseurl: ""
 url: "http://handshake.com"
 username: "handshake"
 twitter: "handshakeeng"
-paginate: 5
+paginate: 3
 
 # Build settings
 markdown: kramdown

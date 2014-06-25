@@ -355,6 +355,34 @@ a:hover   { color: #222; }
   display: none;
 }
 
+/* pagination */
+/* ----------------------------------------------------------*/
+
+.pagination {
+  list-style: none;
+  width: 100%;
+  display: table;
+}
+
+.pagination .previous,
+.pagination .next {
+  width: 50%;
+  display: table-cell;
+}
+
+.pagination .previous { text-align: left; }
+.pagination .next { text-align: right; }
+
+.pagination a,
+.pagination a:visited {
+  color: #222;
+  font-size: 26px;
+  letter-spacing: -.5px;
+  line-height: 30px;
+  font-weight: 100;
+}
+
+.pagination a:hover { color: #FF5800; }
 
 /* media queries */
 /* ----------------------------------------------------------*/
