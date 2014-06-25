@@ -5,7 +5,7 @@ layout: default
 <div class="home">
   {% for post in paginator.posts %}
     {% assign content = post.content %}
-    {% assign link = true %}
+    {% assign post_page = false %}
     {% include post.html %}
   {% endfor %}
 </div>

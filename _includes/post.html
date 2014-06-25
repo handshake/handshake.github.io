@@ -1,13 +1,15 @@
 <div class="post">
   <header class="post-header">
-    <h1>{% if link %}<a href="{{ post.url | prepend: site.baseurl }}">{% endif %}
+    <h1>{% if post_page == false %}<a href="{{ post.url | prepend: site.baseurl }}">{% endif %}
       {{ post.title }}
-    {% if link %}</a>{% endif %}</h1>
+    {% if post_page == false %}</a>{% endif %}</h1>
     <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
   </header>
 
   <article class="post-content">
   {{ content }}
   </article>
+</div>
+<div class="social">
 
 </div>
