@@ -136,10 +136,7 @@ a:hover   { color: #222; }
   color: #828282;
 }
 
-.github-icon-svg,
-.twitter-icon-svg,
-.rss-icon-svg,
-.cc-by-icon-svg {
+.icon-svg {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -383,6 +380,17 @@ a:hover   { color: #222; }
 }
 
 .pagination a:hover { color: #FF5800; }
+
+/* social */
+/* ----------------------------------------------------------*/
+.social .icon-svg {
+  width: 30px;
+  height: 30px;
+}
+
+.social .icon {
+  margin: 0px 5px;
+}
 
 /* media queries */
 /* ----------------------------------------------------------*/
