@@ -15,7 +15,7 @@
   <footer class="post-footer">
     {% include social.html %}
     <p class="cta">
-    {% if post_page %}{% if post.next %}
+    {% if post_page %}{% if post.next.url %}
       <a href="{{ post.next.url | prepend: site.baseurl }}">
         {{ post.next.title }} &raquo;
       </a>
@@ -26,4 +26,17 @@
     {% endif %}
     </p>
   </footer>
+  <!-- Disqus -->
+  {% if post_page %}{% if comments %}
+      <a name="comments"><!-- --></h5>
+      <script type="text/javascript">
+            var disqus_shortname = 'handshakeeng';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+   {% endif %}{% endif %}
 </div>
