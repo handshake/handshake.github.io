@@ -19,15 +19,15 @@
       <a href="{{ post.next.url | prepend: site.baseurl }}">
         {{ post.next.title }} &raquo;
       </a>
-    {% endif %}{% else %}
+    {% endif %}{% else %}{% if site.comments %}
       <a href="{{ post.url | prepend: site.baseurl }}#comments">
         Comment &raquo;
       </a>
-    {% endif %}
+    {% endif %}{% endif %}
     </p>
   </footer>
   <!-- Disqus -->
-  {% if post_page %}{% if comments %}
+  {% if post_page %}{% if site.comments %}
       <a name="comments"><!-- --></h5>
       <script type="text/javascript">
             var disqus_shortname = 'handshakeeng';
