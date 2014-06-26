@@ -1,0 +1,14 @@
+<p class="social">
+ <a class="icon twitter" href="https://twitter.com/intent/tweet?url={{ post.url | prepend: site.baseurl | prepend: site.domain | UrlEncode }}&text={{ post.title | UrlEncode }}%20via%20{{ site.twitter }}">
+   {% include icons/twitter-share.html %}
+ </a>
+ <a class="icon linkedin" href="http://www.linkedin.com/cws/share?url={{ post.url | | prepend: site.baseurl | prepend: site.domain | UrlEncode }}">
+   {% include icons/linkedin-share.html %}
+ </a>
+ <a class="icon facebook" href="http://www.facebook.com/share.php?u={{ post.url | prepend: site.baseurl | prepend: site.domain | UrlEncode }}">
+   {% include icons/facebook-share.html %}
+ </a>
+ <a class="icon reddit" href="http://www.reddit.com/submit?url={{ post.url | prepend: site.baseurl | prepend: site.domain | UrlEncode }}">
+   {% include icons/reddit-share.html %}
+ </a>
+</p>

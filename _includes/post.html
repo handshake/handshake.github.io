@@ -3,23 +3,27 @@
     <h1>{% if post_page == false %}<a href="{{ post.url | prepend: site.baseurl }}">{% endif %}
       {{ post.title }}
     {% if post_page == false %}</a>{% endif %}</h1>
-    <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
+    <div class="post-subheader">
+      <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
+      {% include social.html %}
+     </div>
   </header>
 
   <article class="post-content">
   {{ content }}
   </article>
+  <footer class="post-footer">
+    {% include social.html %}
+    <p class="cta">
+    {% if post_page %}{% if post.next %}
+      <a href="{{ post.next.url | prepend: site.baseurl }}">
+        {{ post.next.title }} &raquo;
+      </a>
+    {% endif %}{% else %}
+      <a href="{{ post.url | prepend: site.baseurl }}#comments">
+        Comment &raquo;
+      </a>
+    {% endif %}
+    </p>
+  </footer>
 </div>
-{% if post_page %}
-<div class="social">
-  <a class="icon twitter" href="https://twitter.com/intent/tweet?url={{ post.url | UrlEncode }}&text={{ post.title | UrlEncode }}%20via%20{{ site.twitter }}">
-    {% include icons/twitter.html %}
-  </a>
-  <a class="icon linkedin" href="http://www.linkedin.com/cws/share?url={{ post.url | UrlEncode }}">
-    {% include icons/linkedin.html %}
-  </a>
-  <a class="icon hackernews" href="https://news.ycombinator.com/submitlink?u={{ post.url | UrlEncode }}&t={{ post.title | UrlEncode }}">
-    {% include icons/hackernews.html %}
-  </a>
-</div>
-{% endif %}

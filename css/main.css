@@ -157,7 +157,23 @@ a:hover   { color: #222; }
 /* Post styles */
 /* ----------------------------------------------------------*/
 
-.post-header { margin: 10px 0 30px; }
+.home .post {
+  margin-bottom: 45px;
+}
+
+.post-header {
+  margin: 10px 0 30px;
+}
+
+.post-footer {
+  border-top: 1px solid #C2C2C2;
+  padding: 5px 0px;
+}
+
+.home .post-footer {
+  border-top: none;
+  border-bottom: 1px solid #C2C2C2;
+}
 
 .post-header h1 {
   font-size: 42px;
@@ -167,19 +183,69 @@ a:hover   { color: #222; }
 }
 
 .post-header h1 a,
-.post-header h1 a:visited {
+.post-footer .cta a,
+.post-header h1 a:visited,
+.post-header .cta a:visited {
   color: #222;
 }
 
-.post-header h1 a:hover {
+.post-header h1 a:hover,
+.post-footer .cta a:hover {
   color: #FF5800;
   text-decoration: none;
 }
 
-.post-header .meta {
-  font-size: 15px;
+.post-subheader,
+.post-footer {
+  display: table;
+  width: 100%;
+}
+
+.post-subheader .meta,
+.post-footer .cta {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 20px;
   color: #818181;
   margin-top: 5px;
+  display: table-cell;
+  width: 50%;
+}
+
+.home .post-footer .cta {
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.post-footer .cta a,
+.post-footer{
+  color: #222;
+}
+
+.post-subheader .social,
+.post-footer .social {
+  display: table-cell;
+  width: 50%;
+  text-align: right;
+}
+
+.post-footer .social { text-align: left; }
+.post-footer .cta { text-align: right; }
+
+.post-subheader .icon,
+.post-footer .icon {
+  margin: 0px 2px;
+}
+
+.post-subheader .icon-svg,
+.post-footer .icon-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.home .post-footer .icon-svg {
+  width: 18px;
+  height: 18px;
 }
 
 .post-content { margin: 0 0 30px; }
@@ -381,17 +447,6 @@ a:hover   { color: #222; }
 
 .pagination a:hover { color: #FF5800; }
 
-/* social */
-/* ----------------------------------------------------------*/
-.social .icon-svg {
-  width: 30px;
-  height: 30px;
-}
-
-.social .icon {
-  margin: 0px 5px;
-}
-
 /* media queries */
 /* ----------------------------------------------------------*/
 
@@ -422,6 +477,18 @@ a:hover   { color: #222; }
   .site-title .engineering-ascii.short {
     display: table-cell;
   }
+
+  .post-subheader .meta,
+  .post-footer .cta {
+    font-size: 15px;
+  }
+
+  .post-subheader .icon-svg,
+  .post-footer .icon-svg {
+    height: 18px;
+    width: 18px;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -468,6 +535,21 @@ a:hover   { color: #222; }
   }
 
   .post-header h1 { font-size: 36px; }
+
+  .post-subheader,
+  .post-footer {
+    display: block;
+  }
+
+  .post-subheader .social,
+  .post-footer .social,
+  .post-subheader .meta,
+  .post-footer .cta {
+    display: block;
+    width: auto;
+    text-align: left;
+  }
+
   .post-content h2 { font-size: 28px; }
   .post-content h3 { font-size: 22px; }
   .post-content h4 { font-size: 18px; }

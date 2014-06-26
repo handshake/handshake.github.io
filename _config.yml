@@ -11,3 +11,6 @@ paginate: 3
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+# social
+domain: "https://handshake.github.io"
