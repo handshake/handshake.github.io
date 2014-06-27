@@ -15,9 +15,9 @@
   <footer class="post-footer">
     {% include social.html %}
     <p class="cta">
-    {% if post_page %}{% if post.next.url %}
-      <a href="{{ post.next.url | prepend: site.baseurl }}">
-        {{ post.next.title }} &raquo;
+    {% if post_page %}{% if post.previous %}
+      <a href="{{ post.previous.url | prepend: site.baseurl }}">
+        Read this next: {{ post.previous.title | truncate: 45 }} &raquo;
       </a>
     {% endif %}{% else %}{% if site.comments %}
       <a href="{{ post.url | prepend: site.baseurl }}#comments">

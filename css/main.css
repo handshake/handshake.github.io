@@ -167,12 +167,13 @@ a:hover   { color: #222; }
 
 .post-footer {
   border-top: 1px solid #C2C2C2;
+  border-bottom: 1px solid #C2C2C2;
   padding: 5px 0px;
+  margin-bottom: 5px;
 }
 
 .home .post-footer {
   border-top: none;
-  border-bottom: 1px solid #C2C2C2;
 }
 
 .post-header h1 {
@@ -218,7 +219,7 @@ a:hover   { color: #222; }
 }
 
 .post-footer .cta a,
-.post-footer{
+.post-footer {
   color: #222;
 }
 
@@ -229,8 +230,15 @@ a:hover   { color: #222; }
   text-align: right;
 }
 
-.post-footer .social { text-align: left; }
-.post-footer .cta { text-align: right; }
+.post-footer .social {
+  text-align: left;
+  width: 25%;
+}
+
+.post-footer .cta {
+  text-align: right;
+  width: 75%;
+}
 
 .post-subheader .icon,
 .post-footer .icon {
