@@ -5,23 +5,27 @@ permalink: /about/
 image: /img/eng.png
 ---
 
-[Handshake](https://handshake.com) Engineering is a team of technologists dedicated to connecting great brands to local retailers with great software. The software we build replaces the antiquated pen-and-paper based systems used by brands and their salespeople, allowing for more products to reach more retailers with less cost, at greater speed and with less environmental impact.
+Handshake Engineering is a team of technologists dedicated to connecting great brands to local retailers with great software. The software we build replaces the antiquated paper-and-clipboard-based systems used by brands and their salespeople, allowing for more products to reach more retailers with less cost, at greater speed and with less environmental impact.
 
 ### Our Challenges
 
-Increasing the reach of great brands, and improving the lives of their team is a big challenge. Solving this one problem requires great UX, extremely fast and extensible data-stores, and a framework allowing for trivial integration with their existing tools.
+Increasing the reach of great brands, and improving the lives of their team members is a big challenge. Solving this one problem requires great UX, extremely fast and extensible data-stores, and a framework allowing for trivial integration with their existing tools.
 
-#### Faster Than The Pen
+#### Faster Than The Order Form
 
-Before Handshake, the state-of-the-art in sales was pen and paper. Orders were taken by hand, faxed, and hand-entered into an [ERP](http://en.wikipedia.org/wiki/Enterprise_resource_planning) by a data-entry specialists. Providing a better experience starts with being simpler and faster than pen and paper. Sounds simple right? Well, it turns out that the pen is pretty fast, especially when you use short-hand. This one challenge leads us to continuously explore new and increasingly efficient interfaces for our users.
+Before Handshake, the state-of-the-art in sales was an order form on a clipboard. Orders were taken by hand, faxed, and hand-entered into an [ERP](http://en.wikipedia.org/wiki/Enterprise_resource_planning) by data-entry specialists. Providing a better experience starts with being simpler and faster than pen and paper. Sounds simple right? Well, it turns out that taking an order with pen on an order form is pretty fast, especially when you use short-hand, and even though paper is massively expensive and inefficient to process, you have to beat the upfront speed to win users. This one challenge leads us to continuously explore new and increasingly efficient interfaces for our users.
 
-#### De-Construct
+#### Integration
 
-#### Integrate
+Our software lives in an ecosystem of software used by brands to manage all aspects of their businesses. Building robust and well-documented APIs is not just a nice-to-have, it's mission critical. Along with powering custom integrations, our APIs support out-of-the-box integrations with platforms like Salesfoce and QuickBooks, allowing our products to painlessly and seamlessly work with our customers' existing infrastructure.
+
+#### Micro-Services #FTW
+
+Providing robust APIs, with the flexibility to experiment with increasingly nuanced UX requires a solid foundation. Starting from a monolithic Django application, we will be breaking down our back-end into increasingly smaller REST services, each backed by the right language and framework for the job.
 
 ### Our Stack
 
-We try to use the right tool for the job, and as few tools as are necessary to get the job done. Our minimalistic stack is optimized for heterogony, flexibility and interoperability. We reserve the right to change our mind, and our stack, to meet the needs of emerging problems:
+We try to use the right tool for the job, and as few tools as are necessary to get the job done. Our minimalistic stack is optimized for heterogony, flexibility and interoperability. We reserve the right to change our mind -- and our stack -- to meet the needs of our emerging problems:
 
  * Our inf is built on `managed hosting`, but will soon be on `AWS` or `RackSpace`
  * We use `salt` for configuration management.
