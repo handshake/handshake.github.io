@@ -288,6 +288,8 @@ a:hover   { color: #222; }
   letter-spacing: -1px;
 }
 
+.post-content img[alt=masthead] { width: 100%; }
+
 .post-content blockquote {
   border-left: 4px solid #e8e8e8;
   padding-left: 20px;
