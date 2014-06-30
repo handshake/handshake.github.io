@@ -14,11 +14,8 @@
       </a>
       <div class="trigger">
         <a class="page-link" href="https://handshake.com">Handshake</a>
-        {% for page in site.pages %}
-          {% unless page.url == "/" or page.url == "/feed.xml" %}
-            <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-          {% endunless %}
-        {% endfor %}
+        <a class="page-link" href="/about/">Who We Are</a>
+        <a class="page-link" target="_blank" href="https://www.handshake.com/careers#eng">Join Us</a>
         <a class="page-link twitter" target="_blank" href="https://twitter.com/{{ site.twitter }}">@{{ site.twitter }}</a>
       </div>
     </nav>

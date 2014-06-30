@@ -20,7 +20,7 @@
         Read this next: {{ post.previous.title | truncate: 45 }} &raquo;
       </a>
     {% endif %}{% else %}{% if site.comments %}
-      <a href="{{ post.url | prepend: site.baseurl }}#comments">
+      <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread">
         Comment &raquo;
       </a>
     {% endif %}{% endif %}
@@ -28,7 +28,7 @@
   </footer>
   <!-- Disqus -->
   {% if post_page %}{% if site.comments %}
-      <a name="comments"><!-- --></a>
+      <a name="disqus_thread"><!-- --></a>
       <div id="disqus_thread"></div>
       <script type="text/javascript">
         var disqus_shortname = 'handshakeeng';

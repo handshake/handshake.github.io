@@ -181,6 +181,7 @@ a:hover   { color: #222; }
   letter-spacing: -1.75px;
   line-height: 1;
   font-weight: 100;
+  overflow: hidden;
 }
 
 .post-header h1 a,
