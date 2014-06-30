@@ -13,7 +13,7 @@ Increasing the reach of great brands, and improving the lives of their team memb
 
 #### Faster Than The Order Form
 
-Before Handshake, the state-of-the-art in sales was an order form on a clipboard. Orders were taken by hand, faxed, and hand-entered into an [ERP](http://en.wikipedia.org/wiki/Enterprise_resource_planning) by data-entry specialists. Providing a better experience starts with being simpler and faster than pen and paper. Sounds simple right? Well, it turns out that taking an order with pen on an order form is pretty fast, especially when you use short-hand, and even though paper is massively expensive and inefficient to process, you have to beat the upfront speed to win users. This one challenge leads us to continuously explore new and increasingly efficient interfaces for our users.
+Before Handshake, the state-of-the-art in wholesale sales was an order form on a clipboard. Orders were taken by hand, faxed, and hand-entered into an [ERP](http://en.wikipedia.org/wiki/Enterprise_resource_planning) by data-entry specialists. Providing a better experience starts with being simpler and faster than pen and paper. Sounds simple right? Well, it turns out that taking an order with pen on an order form is pretty fast, especially when you use short-hand, and even though paper is massively expensive and inefficient to process, you have to beat the upfront speed to win users. This one challenge leads us to continuously explore new and increasingly efficient interfaces for our users.
 
 #### Integration
 
@@ -31,7 +31,7 @@ We try to use the right tool for the job, and as few tools as are necessary to g
  * We use `salt` for configuration management.
  * We use `fab` to deploy.
  * We use `git` for source control.
- * Our database is `PostgreSQL`, but we also use `Redis`.
+ * Our database is `PostgreSQL`, and we also use `Redis`.
  * We have one big `Django` app, but are moving towards REST micro-services.
  * We are nearly done porting to a single universal `iOS` app.
  * We use `Backbone.js` on the Front-End.
