@@ -10,7 +10,9 @@
   </header>
 
   <article class="post-content">
-  {{ content }}
+    {% assign image = post.image %}
+    {% include masthead.html %}
+    {{ content }}
   </article>
   <footer class="post-footer">
     {% include social.html %}

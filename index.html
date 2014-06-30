@@ -6,6 +6,7 @@ layout: default
   {% for post in paginator.posts %}
     {% assign content = post.content %}
     {% assign post_page = false %}
+    {% assign image = post.image %}
     {% include post.html %}
   {% endfor %}
 </div>
