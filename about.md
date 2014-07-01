@@ -17,7 +17,7 @@ Before Handshake, the state-of-the-art in wholesale sales was an order form on a
 
 #### Integration
 
-Our software lives in an ecosystem of software used by brands to manage all aspects of their businesses. Building robust and well-documented APIs is not just a nice-to-have, it's mission critical. Along with powering custom integrations, our APIs support out-of-the-box integrations with platforms like Salesfoce and QuickBooks, allowing our products to painlessly and seamlessly work with our customers' existing infrastructure.
+Our software lives in an ecosystem of software used by brands to manage all aspects of their businesses. Building robust and well-documented APIs is not just a nice-to-have, it's mission critical. Along with powering custom integrations, our APIs support out-of-the-box integrations with platforms like Salesforce and QuickBooks, allowing our products to painlessly and seamlessly work with our customers' existing infrastructure.
 
 #### Micro-Services #FTW
 
