@@ -1,5 +1,5 @@
 <p class="social">
- <a class="icon twitter" href="https://twitter.com/intent/tweet?url={{ post.url | prepend: site.baseurl | prepend: site.domain | UrlEncode }}&text={{ post.title | UrlEncode }}%20via%20{{ site.twitter }}">
+ <a class="icon twitter" href="https://twitter.com/intent/tweet?url={{ post.url | prepend: site.baseurl | prepend: site.domain | UrlEncode }}&text={{ post.title | UrlEncode }}%20via%20@{{ site.twitter }}">
    {% include icons/twitter-share.html %}
  </a>
  <a class="icon linkedin" href="http://www.linkedin.com/cws/share?url={{ post.url | | prepend: site.baseurl | prepend: site.domain | UrlEncode }}">
