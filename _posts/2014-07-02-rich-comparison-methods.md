@@ -99,7 +99,7 @@ False
 {% endhighlight %}
 
 In the case where only one side of the comparison supports an override, the
-object with a comparison override is prefferred regardless of side. When
+object with a comparison override is preferred regardless of side. When
 the object with the override is on the right side, and `>`, `>=`, `<` or `<=`
 are used, python will use the reflection method of the invoked operator. In
 the above example this means `1 < Generic(1)` actually invokes
@@ -126,7 +126,7 @@ ChirpSet([]): Called __eq__
 ChirpSet([]): Called __eq__
 {% endhighlight %}
 
-In the naive case where both sides have a comparison override, Python preferrs
+In the naive case where both sides have a comparison override, Python prefers
 the left side. The comparison against `ChirpSet` above demonstrates what
 happens if the left-side comparison returns the `NotImplemented` constant,
 which will cause Python to fall-back to use the comparison operator from the
@@ -157,7 +157,7 @@ which directly and indirectly inherit `Generic` to demonstrate what happens
 when one side of the comparison includes the `type` of the other side in its
 `mro`. In this case, the more specific `type` is preferred, regardless of
 which side it happens to be on. Note that this doesn't happen in the case of
-shared inheritence:
+shared inheritance:
 
 {% highlight python %}
 >>> class OtherSpecific(Generic):
