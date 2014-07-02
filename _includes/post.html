@@ -4,7 +4,7 @@
       {{ post.title }}
     {% if post_page == false %}</a>{% endif %}</h1>
     <div class="post-subheader">
-      <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
+      <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • <a href="https://github.com/{{ post.author }}">{{ post.author }}</a>{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
       {% include social.html %}
      </div>
   </header>
