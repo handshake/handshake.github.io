@@ -62,9 +62,9 @@ False
 ### Which Method is Called?
 
 In the simple cases above, it's trivial to determine which comparison methods
-prefers. But to get a more complete picture of what's going on under the hood,
-let's decorate our overridden class to print to `stdout` anytime a rich
-comparison method is called:
+Python prefers. But to get a more complete picture of what's going on under
+the hood, let's decorate our overridden class to print to `stdout` anytime a
+rich comparison method is called:
 
 {% highlight python %}
 def chirp_richcomps(cls):
