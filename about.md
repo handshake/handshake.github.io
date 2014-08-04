@@ -19,7 +19,7 @@ Before Handshake, the state-of-the-art in wholesale sales was an order form on a
 
 Our software lives in an ecosystem of software used by brands to manage all aspects of their businesses. Building robust and well-documented APIs is not just a nice-to-have, it's mission critical. Along with powering custom integrations, our APIs support out-of-the-box integrations with platforms like Salesforce and QuickBooks, allowing our products to painlessly and seamlessly work with our customers' existing infrastructure.
 
-#### Micro-Services #FTW
+#### Building The Platform
 
 Providing robust APIs, with the flexibility to experiment with increasingly nuanced UX requires a solid foundation. Starting from a monolithic Django application, we will be breaking down our back-end into increasingly smaller REST services, each backed by the right language and framework for the job.
 
@@ -27,7 +27,7 @@ Providing robust APIs, with the flexibility to experiment with increasingly nuan
 
 We try to use the right tool for the job, and as few tools as are necessary to get the job done. Our minimalistic stack is optimized for heterogony, flexibility and interoperability. We reserve the right to change our mind -- and our stack -- to meet the needs of our emerging problems:
 
- * Our inf is built on `managed hosting`, but will soon be on `AWS` or `RackSpace`
+ * Our inf is built on `RackSpace Cloud`
  * We use `salt` for configuration management.
  * We use `fab` to deploy.
  * We use `git` for source control.
