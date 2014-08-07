@@ -6,7 +6,7 @@ categories: python
 author: matthewstory
 ---
 
-Sometimes in code review I see code that fails to guarentee that all opened
+Sometimes in code review I see code that fails to guarantee that all opened
 files are properly closed. You've likely seen code like this too, it looks
 like this:
 
