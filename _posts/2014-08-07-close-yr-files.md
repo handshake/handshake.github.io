@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "But Python Closes Files Automatically"
-date:   2014-08-05 10:30
+date:   2014-08-07 10:30
 categories: python
 author: matthewstory
 ---
