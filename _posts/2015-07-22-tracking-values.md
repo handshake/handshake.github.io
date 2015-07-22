@@ -15,8 +15,8 @@ standardized that tracking is more complicated.
 
 Events are rarely conceived in the way they are later used, this is not any 
 fault of the developer or the product team, but a reflection of the reality
-that you may not know the questions you will need to ask of your data in the 
-future. If manufacturers are referred by mfr_id in some places mfr_uuid and 
+that you may not know the questions you will need to ask of your data in the
+future. If manufacturers are refered by mfr_id in some places mfr_uuid and
 mfr_slug in others it can quickly becomes attribute soup and cause barriers to
 generating shared views.
 
