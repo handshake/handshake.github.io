@@ -9,9 +9,9 @@ author: firecrow
 Consistency is an important part of tracking events across your site. Tracking
 how users interact with your product is an invaluable part of business
 analytics. It can also be way of validating of debunking ideas about how your
-product is being used. Usually in my experience the question of what should be
-tracked is relatively straight forward. However how much to track and how to
-standardized that tracking is more complicated. 
+product is being used. In my experience the question of what should be
+tracked is relatively straightforward. However how much to track and how to
+standardize that tracking is more complicated. 
 
 Events are rarely conceived in the way they are later used, this is not any 
 fault of the developer or the product team, but a reflection of the reality
