@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "But Python Closes Files Automatically"
+title:  "Effective Standardized Tracking"
 date:   2015-07-22 12:00
 categories: python
 author: firecrow 
