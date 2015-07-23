@@ -7,48 +7,46 @@ author: firecrow
 ---
 
 Event tracking is a growing and exceptionally valueable peice of product
-decistions and business analytics.  More and more, companies are reevaluating
+decisions and business analytics.  More and more, companies are reevaluating
 thier products or releasing multiple ideas at once. Long gone are the days when
 a decision was made to release a single product that remained in production
 till the end of time.  Why chose a single best idea when you can throw out
 several of them and watch how users react. Or better yet, why plan a new
-project without looking at how users have used your interface in the past. The
-possiblities are endless, and your event tracking intfrastructure provides the
+project without looking at how users have historically used your interface. The
+possiblities are endless, and an event tracking intfrastructure provides the
 visiblity that makes this degree of experimentation possible. 
 
-Because this type of analysis is rarely contained in one type of event,
-consistency plays a huge role in the long term success of an implementation.
+Telling the stories that drive this is rarely contained to one type of event.
 In my experience the question of what should be tracked is relatively
 straightforward. How much to track and how to represent relationships in your
-tracking data is where the interesting challenges arise. 
+tracking data is where the interesting challenges arise. Events are rarely
+conceived in the way they are later used. This is a reflection of the reality
+that you may not know the right questions until you see historical results, or
+product priotiries may change in a way that requires new insights. 
 
-Over the years I've seen some amazing implementations and some failures that
-became problematic over time. For that reason I've come up with a uniform
-solution that increases consistency and completness across events.
+Over the years I've seen some amazing implementations and some failures. For
+that reason I've come up with a solution that increases consistency and
+completness across events. One of the most common consistency issues that
+arrises is when data is stored in different ways, such as using different
+fields to identify the same type of entity. For example, if a page which tracks
+manufacturer creation sends only the id, whereas a purchase of an item with a
+manufacturer sends the manufacturer uuid, or just the name, reconciling the
+manufacturer in these cases can be cumbersone. In addition to being more
+complicated to query it can have enourmous performance implicationsif you need
+to query a seperate database to flesh out the missing attributes in your data.
 
-Events are rarely conceived in the way they are later used, this is not any 
-fault of the developer or the product team, but a reflection of the reality
-that you may not know the questions you will need to ask of your data in the 
-future. When data is stored in different ways, such as using different fields
-to identify the same type of entities in different places.  For example, if a
-page which tracks manufacturer creation sends only the id under the field name
-mfr_id, whereas a purchase of an item with a manufacturer sends the 
-manufacturer uuid, or just the name. Later from the business analytics side,
-when joining events together, the difference in how entities are stored can 
-become a huge hurdle in using a variety of events to tell a story. This is a
-major reason why we chose to standardize the fields for a given entity being
-tracked.
+To tackle these concerns at Handshake, we took the aproach of building a
+convention around generating which pieces of data are relevant to tracking an
+entity. This includes the attributes of any entity implicetly related to the
+model, such as a child or parent. This is done by creating a central
+definition for each entity, and then passing the model to a function wich
+generates the key/values to be sent to the
+tracking event.
 
-To tackle these concerns at Handshake, we took the approach of standardizing
-fields for a given model. Sending the model to a function which generates a
-dictionary of attributes, instead of hard coding the attributes into each
-instance of tracking data. In addition to code brevity and consistency, this also
-encouraged robust and flexible tracking methodologies. Including reasonable
-length URL's to track verbose amounts of data. We use a system composed of
-three main parts.
+*The Base Framework*
 
 1.) The TRACKING_MAP, this is a map of the attributes we want to track for each
-model. if that model has relationships, we refer to as children, they are
+model. if that model has relationships, we refer to it as children, they are
 automatically tracked as well.
 
 {% highlight python %}
@@ -73,7 +71,7 @@ TRACKING_MAP = {
     },
     'BuyerProfile': {
         'attributes': ['uuid','ctime'],
-        'children': ['user'],
+        'related': ['user'],
         'key': 'uuid',
     },
 }
