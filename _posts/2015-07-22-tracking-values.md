@@ -35,7 +35,7 @@ length URL's to track verbose amounts of data. We use a system composed of
 three main parts.
 
 1.) The TRACKING_MAP, this is a map of the attributes we want to track for each
-model.  And if that model has relationships, we refer to as children, they are
+model. if that model has relationships, we refer to as children, they are
 automatically tracked as well.
 
 {% highlight python %}
@@ -113,10 +113,10 @@ data = {
 
 {% endhighlight %}
 
-Notice that the User information was included from it's definition as a child
+Notice that the User information was included from its definition as a child
 of the BuyerProfile Object.
 
-3.) a function that accepts an abbreviated URL version of the model and the
+3.) A function that accepts an abbreviated URL version of the model and the
 attribute to look it up under, and then runs through the trackingValues
 function to generate the data for that instance of the model.
 
@@ -134,7 +134,7 @@ def getModel(string, value):
 
 for key, value in request.GET:
     data = {}
-    obj = getModal(key, value)
+    obj = getModel(key, value)
     if obj:
         data.update(trackingValues(obj))
 
