@@ -6,12 +6,25 @@ categories: python
 author: firecrow 
 ---
 
-Consistency is an important part of tracking events across your site. Tracking
-how users interact with your product is an invaluable part of business
-analytics. It can also be way of validating of debunking ideas about how your
-product is being used. In my experience the question of what should be
-tracked is relatively straightforward. How much to track and how to represent
-relationships in your tracking data is where the interesting decisions are made. 
+Event tracking is a growing and exceptionally valueable peice of product
+decistions and business analytics.  More and more, companies are reevaluating
+thier products or releasing multiple ideas at once. Long gone are the days when
+a decision was made to release a single product that remained in production
+till the end of time.  Why chose a single best idea when you can throw out
+several of them and watch how users react. Or better yet, why plan a new
+project without looking at how users have used your interface in the past. The
+possiblities are endless, and your event tracking intfrastructure provides the
+visiblity that makes this degree of experimentation possible. 
+
+Because this type of analysis is rarely contained in one type of event,
+consistency plays a huge role in the long term success of an implementation.
+In my experience the question of what should be tracked is relatively
+straightforward. How much to track and how to represent relationships in your
+tracking data is where the interesting challenges arise. 
+
+Over the years I've seen some amazing implementations and some failures that
+became problematic over time. For that reason I've come up with a uniform
+solution that increases consistency and completness across events.
 
 Events are rarely conceived in the way they are later used, this is not any 
 fault of the developer or the product team, but a reflection of the reality
