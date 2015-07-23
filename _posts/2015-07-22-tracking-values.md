@@ -10,22 +10,29 @@ Consistency is an important part of tracking events across your site. Tracking
 how users interact with your product is an invaluable part of business
 analytics. It can also be way of validating of debunking ideas about how your
 product is being used. In my experience the question of what should be
-tracked is relatively straightforward. However how much to track and how to
-standardize that tracking is more complicated. 
+tracked is relatively straightforward. How much to track and how to represent
+relationships in your tracking data is where the interesting decisions are made. 
 
 Events are rarely conceived in the way they are later used, this is not any 
 fault of the developer or the product team, but a reflection of the reality
-that you may not know the questions you will need to ask of your data in the
-future. If manufacturers are referred by mfr_id in some places mfr_uuid and
-mfr_slug in others it can quickly becomes attribute soup and cause barriers to
-generating shared views.
+that you may not know the questions you will need to ask of your data in the 
+future. When data is stored in different ways, such as using different fields
+to identify the same type of entities in different places.  For example, if a
+page which tracks manufacturer creation sends only the id under the field name
+mfr_id, whereas a purchase of an item with a manufacturer sends the 
+manufacturer uuid, or just the name. Later from the business analytics side,
+when joining events together, the difference in how entities are stored can 
+become a huge hurdle in using a variety of events to tell a story. This is a
+major reason why we chose to standardize the fields for a given entity being
+tracked.
 
-To tackle these concerns at handshake, we took the approach of standardizing
-fields for a given model. Only referring to the model itself, and then using a
-standard set of attributes every time that model was set up for tracking. In
-addition to enhancing code brevity it also encouraged robust and flexible
-tracking methodologies. Including reasonable length URL's to track verbose
-amounts of data. We use a system composed of three main parts.
+To tackle these concerns at Handshake, we took the approach of standardizing
+fields for a given model. Sending the model to a function which generates a
+dictionary of attributes, instead of hard coding the attributes into each
+instance of tracking data. In addition to code brevity and consistency, this also
+encouraged robust and flexible tracking methodologies. Including reasonable
+length URL's to track verbose amounts of data. We use a system composed of
+three main parts.
 
 1.) The TRACKING_MAP, this is a map of the attributes we want to track for each
 model.  And if that model has relationships, we refer to as children, they are
