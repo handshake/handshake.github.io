@@ -6,15 +6,17 @@ categories: python
 author: firecrow 
 ---
 
-Event tracking is a growing and exceptionally valueable peice of product
+*The Value of Event Tracking*
+
+Event tracking is a growing and exceptionally valuable piece of product
 decisions and business analytics.  More and more, companies are reevaluating
-thier products or releasing multiple ideas at once. Long gone are the days when
+their products or releasing multiple ideas at once. Long gone are the days when
 a decision was made to release a single product that remained in production
 till the end of time.  Why chose a single best idea when you can throw out
 several of them and watch how users react. Or better yet, why plan a new
 project without looking at how users have historically used your interface. The
-possiblities are endless. This degree of experimentation is made possible by a
-robust Event tracking intfrastructure. 
+possibilities are endless. This degree of experimentation is made possible by a
+robust Event tracking infrastructure. 
 
 Telling the stories that drive these insights is rarely contained to one type
 of event. In my experience the question of what should be tracked is relatively
@@ -22,25 +24,25 @@ straightforward. How much to track and how to represent relationships in your
 tracking data is where the interesting challenges arise.  Events are rarely
 conceived in the way they are later used. This is a reflection of the fact that
 it is unlikely that you will know the right questions until you see historical
-results, or product priotiries may change in a way that requires new insights. 
+results, or product priorities may change in a way that requires new insights. 
 
 Over the years I've seen some amazing implementations and some failures. For
 that reason I've come up with a solution that increases consistency and
-completness across events. One of the most common consistency issues that
+completeness across events. One of the most common consistency issues that
 arrises is when data is stored in different ways, such as using different
 fields to identify the same type of entity. For example, if a page which tracks
 manufacturer creation sends only the id, whereas a purchase of an item with a
 manufacturer sends the manufacturer uuid, or just the name, reconciling the
-manufacturer in these cases can be cumbersone. In addition to being more
-complicated to query, it can have enourmous performance implications if you
-need to query a seperate database to flesh out the missing attributes in your
+manufacturer in these cases can be cumbersome. In addition to being more
+complicated to query, it can have enormous performance implications if you
+need to query a separate database to flesh out the missing attributes in your
 data.
 
-To tackle these concerns at Handshake, we took the aproach of building a
+To tackle these concerns at Handshake, we took the approach of building a
 convention around generating which pieces of data are relevant to tracking an
-entity. This includes the attributes of any entity implicetly related to the
+entity. This includes the attributes of any entity implicitly related to the
 model, such as a child or parent. This is done by creating a central
-definition for each entity, and then passing the model to a function wich
+definition for each entity, and then passing the model to a function which
 generates the key/values to be sent to the tracking event.
 
 *The Base Framework*
@@ -79,7 +81,7 @@ TRACKING_MAP = {
 {% endhighlight %}
 
 A function we call trackingValues, that receives a series of model objects,
-and generates data based on the TRACKING_MAP
+and generates data based on the TRACKING_MAP.
 
 {% highlight python %}
 def trackingValues(**args):
@@ -135,7 +137,7 @@ data = {
 }
 {% endhighlight %}
 
-Notice that the models related to the orderLine are inlcuded here. One thing to
+Notice that the models related to the orderLine are included here. One thing to
 keep in mind is that in this function, the order total is representative of an
 order with several order lines, beyond just the duck tape. It's tempting in
 situations like this to say that the order details should not be in the event,
@@ -157,7 +159,7 @@ robust consistent implementation with only a few lines of code.
 
 Form here we can extend the framework to include one to many relationships, or
 metadata for the state of each entity. It will be trivial to extend this methodology to
-include addiional arguments to the function, or add lambda functions to the
+include additional arguments to the function, or add lambda functions to the
 TRACKING_MAP. We have can add values to the data object directly, in the above
 case the 'action' value, if we could also add custom values to the entities
 themselves we could further customized our platform for targeted user events. 
@@ -166,4 +168,3 @@ This implementation is just the first step, based on the ideas of generating
 values in one place so they are homogenous for all. Stay tuned for the next
 iteration of this system, now that we have a concise and powerful base, event
 tracking for highly intricate insights can be the next big thing.
-
