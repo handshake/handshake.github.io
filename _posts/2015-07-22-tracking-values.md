@@ -1,174 +1,116 @@
 ---
 layout: post
-title:  "Effective Standardized Tracking"
-date:   2015-07-22 12:00
+title: "Effective Standardized Tracking"
+date: 2015-07-22 12:00
 categories: python
-author: firecrow 
+author: Firecrow Silvernight
 ---
 
 ### The Value of Event Tracking
 
-Event tracking is a growing and exceptionally valuable piece of product
-decisions and business analytics.  More and more, companies are reevaluating
-their products or releasing multiple ideas at once. Long gone are the days when
-a decision was made to release a single product that remained in production
-till the end of time.  Why chose a single best idea when you can throw out
-several of them and watch how users react. Or better yet, why plan a new
-project without looking at how users have historically used your interface. The
-possibilities are endless. This degree of experimentation is made possible by a
-robust Event tracking infrastructure. 
+Event tracking is a growing and exceptionally valuable part of product decisions and business analytics. More and more, companies regularly re-evaluate existing features and release multiple ideas at once. Gone are the days when decisions were made to release single, unchanging features that sit in production till the end of time. Why choose a single, “best,” idea when you can try out several at once, watch how users react, and react in kind? Why plan a new project without looking at how users have historically interacted with your product? This degree of experimentation is made possible by a robust event-tracking infrastructure.
 
-Telling the stories that drive these insights is rarely contained to one type
-of event. In my experience the question of what should be tracked is relatively
-straightforward. How much to track and how to represent relationships in your
-tracking data is where the interesting challenges arise.  Events are rarely
-conceived in the way they are later used. This is a reflection of the fact that
-it is unlikely that you will know the right questions until you see historical
-results, or product priorities may change in a way that requires new insights. 
+The stories that drive customer insights are rarely contained to any one type of event. The question of what should be tracked is generally straightforward [???]. How much to track and how to represent properties and relationships in your tracking data is where the interesting challenges arise. Events are rarely conceived in the way they are later used. It’s unlikely that you will know the right questions to ask till you see historical results and product priorities may change in a way that requires new insights.
 
-Over the years I've seen some amazing implementations and some failures. For
-that reason I've come up with a solution that increases consistency and
-completeness across events. One of the most common consistency issues that
-arrises is when data is stored in different ways, such as using different
-fields to identify the same type of entity. For example, if a page which tracks
-`manufacturer` creation sends only the `id`, whereas a purchase of a **product** with a
-`manufacturer` sends the manufacturer `uuid`, or just the `name`, reconciling the
-`manufacturer` in these cases can be cumbersome. In addition to being more
-complicated to query, it can have enormous performance implications if you
-need to query a separate database to flesh out the missing attributes in your
-data.
+Over the years I’ve seen some amazing event tracking implementations along with a few failures. One of the most common issues that arises is a lack of consistency, especially when the same data is stored in different ways. For example, one of our pages may track a new manufacturer and sends `id` as its unique identifier, whereas an page tracking the purchase of a manufacturer’s product may track the manufacturer using `uuid` or `name`. This can make reconciling the `manufacturer` across events quite cumbersome. In addition to being more complicated to query, it can have enormous performance implications if you’re missing data and—if you can—need to hit a separate database to flesh out the missing attributes in your data.
 
-To tackle these concerns at Handshake, we took the approach of building a
-convention around generating which pieces of data are relevant to tracking an
-entity. This includes the attributes of any entity implicitly related to the
-model, such as a child or parent. This is done by creating a central
-definition for each entity, and then passing the model to a function which
-generates the key/values to be sent to the tracking event.
+To tackle these concerns at Handshake, we took the approach of building a convention around generating which pieces of data are relevant to tracking an entity. This includes the attributes of any entity implicitly related to the model, such as a child or parent. This is done by creating a central definition for each entity and passing the model object to a function that generates key/value pairs to be sent with the tracking event.
 
 ### The Base Framework
 
-In our system we handle a lot of wholesale orders. The objects we work with
-comonly are the `products`, `orders`, `lines` of each `order`, and
-manufacturers of those `products`.
+In our system we handle a lot of wholesale orders. The objects we work with commonly are manufacturers, their products, orders and their line items.
 
-*The `TRACKING_MAP`, this is a map of the attributes we want to track for each
-model. if that model has relationships, they are
-automatically tracked as well.*
+We use a dictionary to map keys to model attributes we want to track. If the model has any relationships, they are tracked as well, using the relationship’s dictionary.
 
 {% highlight python %}
 TRACKING_MAP = {
-    'Product': {
-        'attributes': ['id','name', 'price', 'sku'],
-        'related': ['manufacturer_id'],
-        'key': 'id',
+    "Product": {
+        "attributes": ["id", "name", "price", "sku"],
+        "related": ["manufacturer_id"],
+        "key": "id",
     },
-    'Manufacturer': {
-        'attributes': [
-            'id',
-            'uuid',
-            'name',
-            'externalID',
+    "Manufacturer": {
+        "attributes": [
+            "id",
+            "uuid",
+            "name",
+            "externalID",
         ],
-        'key': 'id',
+        "key": "id",
     },
-    'OrderLine': {
-        'attributes':['id', 'qty'],
-        'related': ['product', 'order']
-        'key':'id',
+    "OrderLine": {
+        "attributes": ["id", "qty"],
+        "related": ["product", "order"]
+        "key": "id",
     },
-    'Order': {
-        'attributes': ['id', 'uuid', 'total'],
-        'related': ['retail_company'],
-        'key': 'uuid',
-    }
+    "Order": {
+        "attributes": ["id", "uuid", "total"],
+        "related": ["retail_company"],
+        "key": "uuid",
+    },
 }
 {% endhighlight %}
 
-*A function we call `trackingValues`, that receives a series of model objects,
-and generates data based on the `TRACKING_MAP`.*
+A related function takes a series of model objects and generates data base on the tracking map.
 
 {% highlight python %}
 def trackingValues(**args):
     data = {}
     for obj in args:
         clsname = obj.__class__.__name__
-        prefix = clsname + '_'
+        prefix = clsname + "_"
         try:
             tmap = TRACKING_MAP.get(clsname)
-            for name in tmap['attributes']:
-                data[prefix+name] = value
+            for name in tmap["attributes"]:
+                data[prefix + name] = value
+        [???] except:
 
-        if tmap.get('children'):
-              for relname in tmap['related']:
+        if tmap.get("children"):
+              for relname in tmap["related"]:
                   rel = getattr(obj, relname)
                   data.update(trackingValues(rel))
     return data
 
 data = {
-    'action':'orderLineUpdated'
-}
-
-{% endhighlight %} 
-
-*Lets say we have an `orderline` with a quantity, that contains an `product`, and
-belongs to an `order`, and the `product` has a `manufacturer`. We can track all that
-by passing in the `orderline`.*
-
-{% highlight python %}
-
-data.update(trackingValues(orderLine)) 
-
-{% endhighlight %} 
-
-*Will produce the output below.*
-
-{% highlight python %}
-data = {
-    'action':'orderLineUpdated'
-    'OrderLine_id':1001,
-    'OrderLine_qty': 3,
-    'Product_id': 123,
-    'Product_name':'Gold Plated Duck Tape',
-    'Product_price': 100,000.00
-    'Product_sku': 'gquack',
-    'Order_id':357,
-    'Order_uuid':'2500b32e-7c1b-11e2-830a-70cd60f2c980'
-    'Order_total':714,328.00
-    'Manufacturer_id':789,
-    'Manufacturer_uuid':'f81d4fae-7dec-11d0-a765-00a0c91e6bf6',
-    'Manufacturer_name': 'Mario Bros Plumbing Supply',
-    'Manufacturer_externalID': "MBroPS',
+    "action": "orderLineUpdated",
 }
 {% endhighlight %}
 
-Notice that the models related to the `orderline` are included here. One thing to
-keep in mind is that in this function, the order total is representative of an
-order with several order lines, beyond just the duck tape. It's tempting in
-situations like this to say that the `order` details should not be in the event,
-but that breaks the simplicity of having this data automated. And when it comes
-to event tracking, extra data is far better than not enough.
+Lets say we have a line item, `orderLine`, and an associated quantity. This line item belongs to an order and references a product, which in turn belongs to a manufacturer. We can track all of the above by merely passing in the `orderLine`.
 
-A few conventions have been defined, firstly for every place in tracking events
-where these models appear, all of the information will be included.  This is
-important because in the short term it may only require a few attributes to
-meet the key result, but it's very possible that tracking data will end up
-being used to answer questions other than the original intention.
+{% highlight python %}
+data.update(trackingValues(orderLine))
+{% endhighlight %}
 
-### Where Do We Go From Here
+Once updated, `data` looks like this:
 
-This is very exciting to me. The code to track events, which will be sprinkled
-all over the place, has been simplified. Both by using only a model in the
-calls to generate tracking data, and by including the relationships, we get a
-robust consistent implementation with only a few lines of code. 
+{% highlight python %}
+{
+    "action": "orderLineUpdated",
+    "OrderLine_id": 1001,
+    "OrderLine_qty": 3,
+    "Product_id": 123,
+    "Product_name": "Gold Plated Duck Tape",
+    "Product_price": 100000.0,
+    "Product_sku": "gquack",
+    "Order_id?: 357,
+    "Order_uuid": "2500b32e-7c1b-11e2-830a-70cd60f2c980",
+    "Order_total": 714328.0
+    "Manufacturer_id": 789,
+    "Manufacturer_uuid": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+    "Manufacturer_name": "Mario Bros Plumbing Supply",
+    "Manufacturer_externalID": "MBroPS",
+}
+{% endhighlight %}
 
-Form here we can extend the framework to include one to many relationships, or
-metadata for the state of each entity. It will be trivial to extend this methodology to
-include additional arguments to the function, or add lambda functions to the
-`TRACKING_MAP`. We have can add values to the data object directly, in the above
-case the 'action' value, if we could also add custom values to the entities
-themselves we could further customized our platform for targeted user events. 
+Each model related to the `orderLine` is included. Note that the order total is included, which is data beyond the scope of the specific line referenced. It’s tempting to say that the `order` details should not be in the event, but that breaks the simplicity of having this data automated. When it comes to event tracking, extra data is far better than not enough.
 
-This implementation is just the first step, based on the ideas of generating
-values in one place so they are homogenous for all. Stay tuned for the next
-iteration of this system, now that we have a concise and powerful base, event
-tracking for highly intricate insights can be the next big thing.
+Wherever a tracking event includes a model, all of its associated information will be included, not just the attributes you think you need beforehand to meet the key result. It’s very possible that the additional data will be used to answer questions beyond the original intent.
+
+### Where Do We Go From Here?
+
+Our event tracking code, which had originally been spread all over, has been simplified and unified. By using the model itself to generate tracking data, and by including its relationships, we get a robust and consistent implementation with only a few lines of code.
+
+From here we can extend the framework to fit our needs, including one-to-many relationship support and metadata for the state of each entity [???]. It’s trivial to add additional arguments to the function or add lambda functions to the `TRACKING_MAP` itself. [???] We can add values to the data object directly, in the above case the “action” value, if we could also add custom values to the entities themselves we could further customized our platform for targeted user events.
+
+Generating values in one place to be homogenous in all is just the first step. Stay tuned for the next iteration, where we build on our concise and powerful base to [???].
