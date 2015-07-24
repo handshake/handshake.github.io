@@ -6,7 +6,7 @@ categories: python
 author: firecrow 
 ---
 
-*The Value of Event Tracking*
+### The Value of Event Tracking
 
 Event tracking is a growing and exceptionally valuable piece of product
 decisions and business analytics.  More and more, companies are reevaluating
@@ -45,11 +45,11 @@ model, such as a child or parent. This is done by creating a central
 definition for each entity, and then passing the model to a function which
 generates the key/values to be sent to the tracking event.
 
-*The Base Framework*
+### The Base Framework
 
-The TRACKING_MAP, this is a map of the attributes we want to track for each
+*The TRACKING_MAP, this is a map of the attributes we want to track for each
 model. if that model has relationships, they are
-automatically tracked as well.
+automatically tracked as well.*
 
 {% highlight python %}
 TRACKING_MAP = {
@@ -80,8 +80,8 @@ TRACKING_MAP = {
 }
 {% endhighlight %}
 
-A function we call trackingValues, that receives a series of model objects,
-and generates data based on the TRACKING_MAP.
+*A function we call trackingValues, that receives a series of model objects,
+and generates data based on the TRACKING_MAP.*
 
 {% highlight python %}
 def trackingValues(**args):
@@ -106,9 +106,9 @@ data = {
 
 {% endhighlight %} 
 
-Lets say we have an orderline with a quantity, that contains an product, and
+*Lets say we have an orderline with a quantity, that contains an product, and
 belongs to an order, and the product has a manufacturer. We can track all that
-by passing in the order line.
+by passing in the order line.*
 
 {% highlight python %}
 
@@ -116,7 +116,7 @@ data.update(trackingValues(orderLine))
 
 {% endhighlight %} 
 
-Will produce the output below.
+*Will produce the output below.*
 
 {% highlight python %}
 data = {
@@ -150,7 +150,7 @@ important because in the short term it may only require a few attributes to
 meet the key result, but it's very possible that tracking data will end up
 being used to answer questions other than the original intention.
 
-*Where Do We Go From Here*
+### Where Do We Go From Here
 
 This is very exciting to me. The code to track events, which will be sprinkled
 all over the place, has been simplified. Both by using only a model in the
