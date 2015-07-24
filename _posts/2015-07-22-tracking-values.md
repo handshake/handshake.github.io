@@ -31,9 +31,9 @@ that reason I've come up with a solution that increases consistency and
 completeness across events. One of the most common consistency issues that
 arrises is when data is stored in different ways, such as using different
 fields to identify the same type of entity. For example, if a page which tracks
-manufacturer creation sends only the id, whereas a purchase of an item with a
-manufacturer sends the manufacturer uuid, or just the name, reconciling the
-manufacturer in these cases can be cumbersome. In addition to being more
+`manufacturer` creation sends only the `id`, whereas a purchase of a **product** with a
+`manufacturer` sends the manufacturer `uuid`, or just the `name`, reconciling the
+`manufacturer` in these cases can be cumbersome. In addition to being more
 complicated to query, it can have enormous performance implications if you
 need to query a separate database to flesh out the missing attributes in your
 data.
@@ -47,7 +47,11 @@ generates the key/values to be sent to the tracking event.
 
 ### The Base Framework
 
-*The TRACKING_MAP, this is a map of the attributes we want to track for each
+In our system we handle a lot of wholesale orders. The objects we work with
+comonly are the `products`, `orders`, `lines` of each `order`, and
+manufacturers of those `products`.
+
+*The `TRACKING_MAP`, this is a map of the attributes we want to track for each
 model. if that model has relationships, they are
 automatically tracked as well.*
 
@@ -80,8 +84,8 @@ TRACKING_MAP = {
 }
 {% endhighlight %}
 
-*A function we call trackingValues, that receives a series of model objects,
-and generates data based on the TRACKING_MAP.*
+*A function we call `trackingValues`, that receives a series of model objects,
+and generates data based on the `TRACKING_MAP`.*
 
 {% highlight python %}
 def trackingValues(**args):
@@ -106,9 +110,9 @@ data = {
 
 {% endhighlight %} 
 
-*Lets say we have an orderline with a quantity, that contains an product, and
-belongs to an order, and the product has a manufacturer. We can track all that
-by passing in the order line.*
+*Lets say we have an `orderline` with a quantity, that contains an `product`, and
+belongs to an `order`, and the `product` has a `manufacturer`. We can track all that
+by passing in the `orderline`.*
 
 {% highlight python %}
 
@@ -137,10 +141,10 @@ data = {
 }
 {% endhighlight %}
 
-Notice that the models related to the orderLine are included here. One thing to
+Notice that the models related to the `orderline` are included here. One thing to
 keep in mind is that in this function, the order total is representative of an
 order with several order lines, beyond just the duck tape. It's tempting in
-situations like this to say that the order details should not be in the event,
+situations like this to say that the `order` details should not be in the event,
 but that breaks the simplicity of having this data automated. And when it comes
 to event tracking, extra data is far better than not enough.
 
@@ -160,7 +164,7 @@ robust consistent implementation with only a few lines of code.
 Form here we can extend the framework to include one to many relationships, or
 metadata for the state of each entity. It will be trivial to extend this methodology to
 include additional arguments to the function, or add lambda functions to the
-TRACKING_MAP. We have can add values to the data object directly, in the above
+`TRACKING_MAP`. We have can add values to the data object directly, in the above
 case the 'action' value, if we could also add custom values to the entities
 themselves we could further customized our platform for targeted user events. 
 
