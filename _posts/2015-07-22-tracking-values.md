@@ -10,7 +10,7 @@ author: Firecrow Silvernight
 
 Event tracking is a growing and exceptionally valuable part of product decisions and business analytics. More and more, companies regularly re-evaluate existing features and release multiple ideas at once. Gone are the days when decisions were made to release single, unchanging features that sit in production till the end of time. Why choose a single, “best,” idea when you can try out several at once, watch how users react, and react in kind? Why plan a new project without looking at how users have historically interacted with your product? This degree of experimentation is made possible by a robust event-tracking infrastructure.
 
-The stories that drive customer insights are rarely contained to any one type of event. The question of what should be tracked is generally straightforward [???]. How much to track and how to represent properties and relationships in your tracking data is where the interesting challenges arise. Events are rarely conceived in the way they are later used. It’s unlikely that you will know the right questions to ask till you see historical results and product priorities may change in a way that requires new insights.
+The stories that drive customer insights are rarely contained to any one type of event. How much to track and how to represent properties and relationships in your tracking data is where the interesting challenges arise. Events are rarely conceived in the way they are later used. It’s unlikely that you will know the right questions to ask till you see historical results and product priorities may change in a way that requires new insights.
 
 Over the years I’ve seen some amazing event tracking implementations along with a few failures. One of the most common issues that arises is a lack of consistency, especially when the same data is stored in different ways. For example, one of our pages may track a new manufacturer and sends `id` as its unique identifier, whereas an page tracking the purchase of a manufacturer’s product may track the manufacturer using `uuid` or `name`. This can make reconciling the `manufacturer` across events quite cumbersome. In addition to being more complicated to query, it can have enormous performance implications if you’re missing data and—if you can—need to hit a separate database to flesh out the missing attributes in your data.
 
@@ -59,11 +59,10 @@ def trackingValues(**args):
     for obj in args:
         clsname = obj.__class__.__name__
         prefix = clsname + "_"
-        try:
-            tmap = TRACKING_MAP.get(clsname)
-            for name in tmap["attributes"]:
-                data[prefix + name] = value
-        [???] except:
+
+        tmap = TRACKING_MAP.get(clsname)
+        for name in tmap["attributes"]:
+            data[prefix + name] = getattr(obj, name)
 
         if tmap.get("children"):
               for relname in tmap["related"]:
@@ -111,6 +110,5 @@ Wherever a tracking event includes a model, all of its associated information wi
 
 Our event tracking code, which had originally been spread all over, has been simplified and unified. By using the model itself to generate tracking data, and by including its relationships, we get a robust and consistent implementation with only a few lines of code.
 
-From here we can extend the framework to fit our needs, including one-to-many relationship support and metadata for the state of each entity [???]. It’s trivial to add additional arguments to the function or add lambda functions to the `TRACKING_MAP` itself. [???] We can add values to the data object directly, in the above case the “action” value, if we could also add custom values to the entities themselves we could further customized our platform for targeted user events.
+From here we are well positioned to make use of this data to answer complex questions.
 
-Generating values in one place to be homogenous in all is just the first step. Stay tuned for the next iteration, where we build on our concise and powerful base to [???].
